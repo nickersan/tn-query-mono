@@ -57,8 +57,6 @@
 
     <dependencies>
 
-      <!-- 3rd party -->
-
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava-testlib</artifactId>
@@ -302,7 +300,7 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>1.9.5</version>
+            <version>1.15.1</version>
             <executions>
               <execution>
                 <goals>
@@ -311,6 +309,9 @@
               </execution>
             </executions>
             <configuration>
+              <argLine>
+                --add-opens java.base/java.lang=ALL-UNNAMED
+              </argLine>
               <reportsDirectory>${project.build.directory}/site/pitest</reportsDirectory>
               <targetClasses>
                 <param>com.tn.query.*</param>
@@ -324,7 +325,7 @@
               <dependency>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-junit5-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>1.2.0</version>
               </dependency>
             </dependencies>
           </plugin>
