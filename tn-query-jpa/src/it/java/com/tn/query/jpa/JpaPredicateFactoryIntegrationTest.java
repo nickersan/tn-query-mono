@@ -26,13 +26,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tn.query.DefaultQueryParser;
 import com.tn.query.QueryException;
 import com.tn.query.QueryParseException;
 import com.tn.query.ValueMappers;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ContextConfiguration(classes = JpaQueryParserIntegrationTest.TestConfiguration.class)
-class JpaQueryParserIntegrationTest
+@ContextConfiguration(classes = JpaPredicateFactoryIntegrationTest.TestConfiguration.class)
+class JpaPredicateFactoryIntegrationTest
 {
   @Autowired
   TargetRepository targetRepository;
@@ -838,6 +839,7 @@ class JpaQueryParserIntegrationTest
   @EnableJpaRepositories("com.tn.query.jpa")
   static class TestConfiguration
   {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Bean
     TargetRepositoryImpl targetRepositoryImpl(EntityManager entityManager)
     {
@@ -847,9 +849,11 @@ class JpaQueryParserIntegrationTest
       return new TargetRepositoryImpl(
         entityManager,
         criteriaQuery,
-        new JpaQueryParser(
-          entityManager.getCriteriaBuilder(),
-          NameMappings.forFields(Target.class, criteriaQuery),
+        new DefaultQueryParser<>(
+          new JpaPredicateFactory(
+            entityManager.getCriteriaBuilder(),
+            NameMappings.forFields(Target.class, criteriaQuery)
+          ),
           ValueMappers.forFields(Target.class)
         )
       );

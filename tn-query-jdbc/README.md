@@ -5,7 +5,7 @@ TN Query JDBC provides an implementation of [tn-query](https://github.com/nicker
 
 ## Usage
 
-For each table you want to query create an instance of `com.tn.query.jdbc.JdbcQueryParser` passing:
+For each table you want to query create an instance of `com.tn.query.jdbc.JdbcPredicateFactory` passing:
 
 1. any mappings between the names used in the query string and the column names in the table being queried.
 2. the `com.tn.query.Mapper`s used to convert the string value from the query string, to a value passed to the `java.sql.PreparedStatement`s.
@@ -20,7 +20,7 @@ person(
 )
 ```
 
-An instance of `com.tn.query.jdbc.JdbcQueryParser` could be created as follows:
+An instance of `com.tn.query.jdbc.JdbcPredicateFactory` could be created as follows:
 ```java
 QueryParser<JdbcPredicate> queryParser = new JdbcQueryParser(
     Map.of(

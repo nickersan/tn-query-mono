@@ -4,7 +4,7 @@ TN Query Java provides an implementation of [tn-query](https://github.com/nicker
 
 ## Usage
 
-For each object you want to query create an instance of `com.tn.query.java.JavaQueryParser` passing:
+For each object you want to query create an instance of `com.tn.query.java.JavaPredicateFactory` passing:
 
 1. the `com.tn.query.java.Getter`s used to read a given field name from the object being queried.
 2. the `com.tn.query.Mapper`s used to convert the string value from the query string, to a value to be compared to the object field.
@@ -21,7 +21,7 @@ public class Person
 }
 ```
 
-An instance of `com.tn.query.java.JavaQueryParser` could be created as follows:
+An instance of `com.tn.query.java.JavaPredicateFactory` could be created as follows:
 ```java
 QueryParser<Predicate<Target>> queryParser = new JavaQueryParser<>(
   List.of(

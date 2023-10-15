@@ -23,11 +23,11 @@ To use, create an instance of an implementation of `com.tn.query.QueryParser` an
 There are various implementations of `com.tn.query.QueryParser` including Java, JDBC and JPA - see each for the particulars of create their implementations of 
 `com.tn.query.QueryParser`.
 
-To create a custom implementation of `com.tn.query.QueryParser`, it is recommended `com.tn.query.AbstractQueryParser` be extended.  The typical pattern is that variable 
+To create a custom implementation of `com.tn.query.QueryParser`, it is recommended `com.tn.query.DefaultQueryParser` be extended.  The typical pattern is that variable 
 name-to-value-type mappers are provided; these are used to parse the string values from the query into actual values that can be evaluated when a query is executed.
 
-`com.tn.query.AbstractQueryParser` requires methods that create the nodes in the resulting query tree be implemented.  For example, an implementation of 
-`com.tn.query.AbstractQueryParser` that returns Java predicates could take the form:
+`com.tn.query.DefaultQueryParser` requires methods that create the nodes in the resulting query tree be implemented.  For example, an implementation of 
+`com.tn.query.DefaultQueryParser` that returns Java predicates could take the form:
 
 ```java
   public Predicate<T> equals(String left, Object right)
