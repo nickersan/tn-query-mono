@@ -23,12 +23,14 @@ public class Person
 
 An instance of `com.tn.query.java.JavaPredicateFactory` could be created as follows:
 ```java
-QueryParser<Predicate<Target>> queryParser = new JavaQueryParser<>(
-  List.of(
-    Getter.intValue("id", target -> target.getId()),
-    Getter.comparableValue("firstName", person -> person.getFirstName()),
-    Getter.comparableValue("lastName", person -> person.getLastName()),
-    Getter.comparableValue("sex", person -> person.getSex())
+QueryParser<Predicate<Target>> queryParser = new DefaultQueryParser<>(
+  new JavaPredicateFactory<>(
+    List.of(
+      Getter.intValue("id", target -> target.getId()),
+      Getter.comparableValue("firstName", person -> person.getFirstName()),
+      Getter.comparableValue("lastName", person -> person.getLastName()),
+      Getter.comparableValue("sex", person -> person.getSex())
+    )
   ),
   List.of(
     Mapper.toInt("id"),
@@ -43,3 +45,10 @@ people.stream().filter(queryParser.parse("((firstName = John && sex = MALE) || (
 ```
 
 Note: when no mapper is provided, the value in the query string will be treated as a `java.lang.String`.
+
+## Build
+
+Typically, the command `mvn clean install` is used, which builds and packages, runs unit and integration tests and installs the artifacts into the local
+[Maven](https://maven.apache.org/) repository.
+
+See [tn-parent](..\tn-parent\README.md) for more details regarding the build.

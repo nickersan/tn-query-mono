@@ -1,30 +1,34 @@
-## tn-query-mono
+# tn-query-mono
 
 This is a mono-repo structure, which captures all `tn-query` projects in a single repository.
 
 For more information about `tn-query`, see the [tn-query](./tn-query/README.md) project which defines the query concepts. 
 
-### Projects
+## Projects
 
-#### [tn-parent](./tn-parent/README.md)
+### [tn-parent](./tn-parent/README.md)
 Parent POM that defines the common dependencies and build features for all `tn-query` projects.
 
-#### [tn-query](./tn-query/README.md)
+### [tn-query](./tn-query/README.md)
 The base library that defines the query structure, provides the parser for that query structure and sets up the extension points for specific predicate implementations.
 
-#### [tn-query-java](./tn-query-java/README.md)
+### [tn-query-java](./tn-query-java/README.md)
 An implementation that constructs Java predicates that can be used in conjunction with the 
 [Java Stream API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html).
 
-#### [tn-query-jdbc](./tn-query-jdbc/README.md)
+### [tn-query-jdbc](./tn-query-jdbc/README.md)
 An implementation that constructs SQL predicates that can be used in conjunction with a JDBC 
 [PreparedStatement](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/PreparedStatement.html).
 
-#### [tn-query-jpa](./tn-query-jdbc/README.md)
+### [tn-query-jpa](./tn-query-jdbc/README.md)
 An implementation that constructs JPA predicates that can be used in conjunction with the  
 [Spring Boot JPA API](https://docs.spring.io/spring-data/jpa/docs/current/reference/html).
 
-### Build
+## JDK
+
+`tn-query` is setup to build with JDK 17.
+
+## Build
 
 All the `tn-query` projects are built with [Maven](https://maven.apache.org/).
 
